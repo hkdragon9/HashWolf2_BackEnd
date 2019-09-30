@@ -6,14 +6,14 @@ Note: running this program requires the installation of mysql,
 which can be found here: `https://dev.mysql.com/doc/refman/8.0/en/installing.html`
 
 ### Basic functionalities:
-1. /all:
+1. **/all**:
 
   - display all the data entries currently in your database
   
   - e.g. `http://localhost:8080/hashwolf2/all`
   
   
-2. /add:
+2. **/add**:
 
   - add a `User` instance to the `user` TABLE
   
@@ -26,7 +26,7 @@ which can be found here: `https://dev.mysql.com/doc/refman/8.0/en/installing.htm
   (Note: the params after "add" doesn't matter, so you can add add?user_name = ??? etc but those params don't take into account)
 
 
-3. /insert:
+3. **/insert**:
 
   - insert a  `User` instance to the `user` TABLE, with the params specified in your url
   
