@@ -8,18 +8,18 @@ which can be found here: `https://dev.mysql.com/doc/refman/8.0/en/installing.htm
 ### Basic functionalities:
 1. /all:
 
-  -display all the data entries currently in your database
+  - display all the data entries currently in your database
   
   - e.g. `http://localhost:8080/hashwolf2/all`
   
   
 2. /add:
 
-  -add a `User` instance to the `user` TABLE
+  - add a `User` instance to the `user` TABLE
   
-  -note that this must be used along with Postman (as far as I know).
+  - note that this must be used along with Postman (as far as I know).
   
-  -Postman can be found here: `https://www.getpostman.com/`
+  - Postman can be found here: `https://www.getpostman.com/`
   
   - e.g. `http://localhost:8080/hashwolf2/add` 
   
@@ -28,9 +28,9 @@ which can be found here: `https://dev.mysql.com/doc/refman/8.0/en/installing.htm
 
 3. /insert:
 
-  -insert a  `User` instance to the `user` TABLE, with the params specified in your url
+  - insert a  `User` instance to the `user` TABLE, with the params specified in your url
   
-  -note that it must follow the format: `insert?user_userID={user_id}&user_name={name}&user_email={email}` though the params can be null.
+  - note that it must follow the format: `insert?user_userID={user_id}&user_name={name}&user_email={email}` though the params can be null.
   
   - e.g. `http://localhost:8080/hashwolf2/insert?user_userID=250&user_name=oski&user_email=oski@ucb.com`
   
