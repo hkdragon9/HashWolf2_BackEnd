@@ -42,3 +42,13 @@ Once the application starts, you should expect to see a few JSON objects printed
   - note that it must follow the format: `insert?user_userID={user_id}&user_name={name}&user_email={email}` though the params can be null.
 
   - e.g. `http://localhost:8080/hashwolf2/insert?user_userID=250&user_name=oski&user_email=oski@ucb.com`
+
+## Q&A:
+1.
+Q: Error message like `xxx must have a default value` or `DataBaseSeeder failed to run` etc.
+
+A: The problem is that the primary key entry must be set with some default value:
+Open your DBMD application (Navicat in my case), in the query section, enter the following database query for the relevant database table:
+
+`ALTER TABLE user ALTER UserID set DEFAULT 0;
+ALTER TABLE user MODIFY COLUMN userID INT auto_increment`
