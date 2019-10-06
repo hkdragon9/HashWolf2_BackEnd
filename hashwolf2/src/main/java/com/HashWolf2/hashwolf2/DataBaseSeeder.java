@@ -23,12 +23,21 @@ public class DataBaseSeeder implements CommandLineRunner {
     @Override
     public void run(String ... strings) throws Exception {
 
+<<<<<<< HEAD
         List<User> list = new ArrayList<>();
 
         //list.add(new User(10, "Kenny", "kennyhuang9@qq.com"));
         //list.add(new User(20, "Zichuan", "zeichuan@berkeley.edu"));
 
         userRepository.saveAll(list);
+=======
+        // List<User> list = new ArrayList<>();
+
+        // list.add(new User(10, "Kenny", "kennyhuang9@qq.com"));
+        // list.add(new User(20, "Zichuan", "zeichuan@berkeley.edu"));
+
+        // userRepository.saveAll(list);
+>>>>>>> 7b9af31d345ebe24a2040a909a17fad83a782a07
 
     }
 }
