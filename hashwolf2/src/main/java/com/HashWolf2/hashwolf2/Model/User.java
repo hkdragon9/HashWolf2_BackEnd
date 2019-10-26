@@ -1,32 +1,35 @@
 package com.HashWolf2.hashwolf2.Model;
 
-import org.springframework.data.annotation.Id;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
+import java.util.List;
 
-@Entity
+@javax.persistence.Entity
+@Access(value=AccessType.FIELD)
 public class User {
 
     @javax.persistence.Id
-    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "userID")
-    private int userid = -1;
+    private int userid;
     @Column(name = "name")
     private String name;
     @Column(name = "email")
     private String email;
 
+
+
+    @ManyToMany(targetEntity=Group.class)
+    private List<Group> userGroups;
+
     public User(){
     }
 
-    public User(int id, String n, String e) {
+    public User(int id, String n, String e, List<Group> groups) {
         userid = id;
         name = n;
         email = e;
+        this.userGroups = groups;
     }
 
     public int getUserid() {
@@ -51,5 +54,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Group> getGroups() {
+        return userGroups;
+    }
+
+    public void setGroups(List<Group> groups) {
+        this.userGroups = groups;
     }
 }
