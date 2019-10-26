@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 @javax.persistence.Entity
 @Access(value=AccessType.FIELD)
+@Table(name = "payment")
 public class Payment {
 
     @javax.persistence.Id
@@ -20,13 +21,18 @@ public class Payment {
     @Column(name = "paymentDes")
     private String paymentDes;
 
-    @ManyToOne
-    private Group paymentGroup;
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    //@JoinColumn(name = "groupID",referencedColumnName = "groupID")
+//    private GroupTable paymentGroup;
 
-    public Payment(int paymentID, String paymentName, Group group) {
-        this.paymentID = paymentID;
+    public Payment() {
+
+    }
+
+    public Payment(String paymentName) {
+        //this.paymentID = paymentID;
         this.paymentName = paymentName;
-        this.paymentGroup = group;
+        //this.paymentGroup = GroupTable;
     }
 
 
@@ -55,13 +61,13 @@ public class Payment {
         this.paymentDes = paymentDes;
     }
 
-    public Group getGroupID() {
-        return paymentGroup;
-    }
-
-    public void setGroupID(Group group) {
-        this.paymentGroup = group;
-    }
+//    public GroupTable getGroupID() {
+//        return paymentGroup;
+//    }
+//
+//    public void setGroupID(GroupTable group) {
+//        this.paymentGroup = group;
+//    }
 
 
 }

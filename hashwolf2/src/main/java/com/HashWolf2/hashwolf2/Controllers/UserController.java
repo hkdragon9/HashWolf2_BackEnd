@@ -1,7 +1,7 @@
 package com.HashWolf2.hashwolf2.Controllers;
 
 
-import com.HashWolf2.hashwolf2.Model.Group;
+import com.HashWolf2.hashwolf2.Model.GroupTable;
 import com.HashWolf2.hashwolf2.Model.User;
 import com.HashWolf2.hashwolf2.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,8 +41,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/insert", method = RequestMethod.GET)
-    public List<User> insert(@RequestParam int user_userID, @RequestParam String user_name, @RequestParam String user_email, @RequestParam List<Group> groups) {
-        User tempUser = new User(user_userID, user_name, user_email, groups);
+    public List<User> insert(@RequestParam String user_name, @RequestParam String user_email, @RequestParam List<GroupTable> groups) {
+        User tempUser = new User(user_name, user_email, groups);
         usersRepository.save(tempUser);
         return usersRepository.findAll();
     }

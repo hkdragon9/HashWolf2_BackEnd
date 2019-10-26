@@ -6,6 +6,7 @@ import java.util.List;
 
 @javax.persistence.Entity
 @Access(value=AccessType.FIELD)
+@Table(name = "user")
 public class User {
 
     @javax.persistence.Id
@@ -19,17 +20,18 @@ public class User {
 
 
 
-    @ManyToMany(targetEntity=Group.class)
-    private List<Group> userGroups;
+//    @ManyToMany(targetEntity=Group.class)
+//    @JoinColumn(name = "groupID")
+//    private List<Group> userGroups;
 
     public User(){
     }
 
-    public User(int id, String n, String e, List<Group> groups) {
-        userid = id;
+    public User(String n, String e, List<GroupTable> GroupTables) {
+        //userid = id;
         name = n;
         email = e;
-        this.userGroups = groups;
+        //this.userGroups = groups;
     }
 
     public int getUserid() {
@@ -56,11 +58,11 @@ public class User {
         this.email = email;
     }
 
-    public List<Group> getGroups() {
-        return userGroups;
-    }
-
-    public void setGroups(List<Group> groups) {
-        this.userGroups = groups;
-    }
+//    public List<Group> getGroups() {
+//        return userGroups;
+//    }
+//
+//    public void setGroups(List<Group> groups) {
+//        this.userGroups = groups;
+//    }
 }

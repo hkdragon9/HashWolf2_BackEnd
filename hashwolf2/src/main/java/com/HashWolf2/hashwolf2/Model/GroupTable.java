@@ -8,7 +8,8 @@ import java.util.List;
 
 @javax.persistence.Entity
 @Access(value=AccessType.FIELD)
-public class Group {
+@Table(name = "groupTable")
+public class GroupTable {
 
     @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,20 +21,26 @@ public class Group {
 
 
     //@Column(name = "users")
-    @ManyToMany(targetEntity=User.class)
-    private List<User> groupUsers;
+//    @ManyToMany(targetEntity=User.class)
+//    @JoinColumn(name = "userID")
+//    private List<User> groupUsers;
 
-    //@Column(name = "payments")
-    @OneToMany(targetEntity=Payment.class, mappedBy="paymentGroup", fetch=FetchType.EAGER)
+    @Column(name = "payments")
+    @OneToMany    //(targetEntity=Payment.class, mappedBy="paymentGroup", fetch=FetchType.EAGER)
+    @JoinColumn(name = "groupID",referencedColumnName = "groupID")
     private List<Payment> payments;
 
     @Column(name = "groupDes")
     private String groupDes;
 
-    public Group(int groupID, String groupName, List<User> users, List<Payment> payments) {
-        this.groupID = groupID;
+    public GroupTable() {
+
+    }
+
+    public GroupTable(String groupName, List<User> users, List<Payment> payments) {
+        //this.groupID = groupID;
         this.groupName = groupName;
-        this.groupUsers = users;
+        //this.groupUsers = users;
         this.payments = payments;
     }
 
@@ -55,13 +62,13 @@ public class Group {
         this.groupName = groupName;
     }
 
-    public List<User> getUsers() {
-        return groupUsers;
-    }
-
-    public void setUsers(List<User> users) {
-        this.groupUsers = users;
-    }
+//    public List<User> getUsers() {
+//        return groupUsers;
+//    }
+//
+//    public void setUsers(List<User> users) {
+//        this.groupUsers = users;
+//    }
 
     public List<Payment> getPayments() {
         return payments;
