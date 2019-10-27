@@ -26,13 +26,12 @@ public class Payment {
 //    private GroupTable paymentGroup;
 
     public Payment() {
-
+        paymentName = "NULL";
+        paymentDes = "NULL";
     }
 
     public Payment(String paymentName) {
-        //this.paymentID = paymentID;
         this.paymentName = paymentName;
-        //this.paymentGroup = GroupTable;
     }
 
 

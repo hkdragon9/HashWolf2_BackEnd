@@ -21,6 +21,10 @@ public class UserController {
         this.usersRepository = userRepository;
     }
 
+    public UserRepository getUsersRepository() {
+        return usersRepository;
+    }
+
     @RequestMapping(value = "/all")
     public List<User> getAll(){
         return usersRepository.findAll();
@@ -30,7 +34,6 @@ public class UserController {
     public List<User> clear(){
         usersRepository.deleteAll();
         return usersRepository.findAll();
-
     }
 
 
@@ -40,11 +43,33 @@ public class UserController {
         return usersRepository.findAll();
     }
 
-    @RequestMapping(value = "/insert", method = RequestMethod.GET)
-    public List<User> insert(@RequestParam String user_name, @RequestParam String user_email, @RequestParam List<GroupTable> groups) {
-        User tempUser = new User(user_name, user_email, groups);
+    @GetMapping("/findUserByID/{userID}")
+    public User getUserbyId(@PathVariable("userID") final Integer uid) {
+        return usersRepository.findByUserid(uid);
+    }
+
+    @GetMapping("/findUserGroupsByID/{userID}")
+    public List<GroupTable> getUserGroups(@PathVariable("userID") final Integer uid) {
+        return usersRepository.findByUserid(uid).getGroups();
+    }
+
+    @RequestMapping(value = "/addNewUser", method = RequestMethod.GET)
+    public List<User> insert(@RequestParam String user_name, @RequestParam String user_email) {
+        User tempUser = new User(user_name, user_email, null);
         usersRepository.save(tempUser);
         return usersRepository.findAll();
     }
+
+    @RequestMapping(value = "/containsGroup")
+    public void addGroupToUser(@RequestParam int userID, @RequestParam int groupID) {
+        User user = usersRepository.findByUserid(userID);
+        //GroupTable group = null;
+
+
+    }
+
+
+
+
 
 }

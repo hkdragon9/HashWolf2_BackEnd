@@ -5,4 +5,5 @@ import com.HashWolf2.hashwolf2.Model.User;
 
 
 public interface UserRepository extends JpaRepository<User, Integer> {
+    User findByUserid(int userID);
 }

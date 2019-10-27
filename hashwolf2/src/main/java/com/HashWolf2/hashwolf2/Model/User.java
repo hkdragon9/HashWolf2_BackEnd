@@ -2,6 +2,7 @@ package com.HashWolf2.hashwolf2.Model;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @javax.persistence.Entity
@@ -20,18 +21,27 @@ public class User {
 
 
 
-//    @ManyToMany(targetEntity=Group.class)
-//    @JoinColumn(name = "groupID")
-//    private List<Group> userGroups;
+    @ManyToMany
+    @JoinTable(name = "users_groups", joinColumns = @JoinColumn(name = "userID"),
+            inverseJoinColumns = @JoinColumn(name = "groupID")
+    )
+    private List<GroupTable> userGroups;
 
     public User(){
+        name = "NULL";
+        email = "NULL";
+        userGroups = new ArrayList<GroupTable>();
     }
 
     public User(String n, String e, List<GroupTable> GroupTables) {
         //userid = id;
         name = n;
         email = e;
-        //this.userGroups = groups;
+        if (GroupTables == null) {
+            userGroups = new ArrayList<GroupTable>();
+        } else {
+            this.userGroups = GroupTables;
+        }
     }
 
     public int getUserid() {
@@ -58,11 +68,29 @@ public class User {
         this.email = email;
     }
 
-//    public List<Group> getGroups() {
-//        return userGroups;
-//    }
-//
-//    public void setGroups(List<Group> groups) {
-//        this.userGroups = groups;
-//    }
+    public List<GroupTable> getGroups() {
+        return userGroups;
+    }
+
+    public void setGroups(List<GroupTable> groups) {
+        this.userGroups = groups;
+    }
+
+
+    public boolean containsGroup(GroupTable group) {
+        int gid = group.getGroupID();
+        for (GroupTable g : userGroups) {
+            if (gid == g.getGroupID()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void insertGroup(GroupTable group) {
+        if (containsGroup(group)) {
+            return;
+        }
+        userGroups.add(group);
+    }
 }

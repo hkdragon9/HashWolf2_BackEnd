@@ -28,6 +28,10 @@ public class PaymentController {
         this.paymentRepository = paymentRepository;
     }
 
+    public PaymentRepository getPaymentRepository() {
+        return paymentRepository;
+    }
+
     @RequestMapping(value = "/all")
     public List<Payment> getAll() {
         return paymentRepository.findAll();

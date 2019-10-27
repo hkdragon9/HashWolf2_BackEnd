@@ -13,11 +13,16 @@ import java.util.List;
 @RequestMapping(value = "/groupTable")
 public class GroupController {
 
+
     @Autowired
     private GroupTableRepository groupTableRepository;
 
     public GroupController(GroupTableRepository groupTableRepository) {
         this.groupTableRepository = groupTableRepository;
+    }
+
+    public GroupTableRepository getGroupTableRepository() {
+        return groupTableRepository;
     }
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
