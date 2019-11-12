@@ -64,7 +64,16 @@ public class UserController {
     // curl -X PUT -H "Content-Type: application/json" -d '{"name":"ken", "email":"ken@qq.com"}' http://localhost:8080/user/
     @RequestMapping(method = RequestMethod.PUT)
     public User insert(@RequestBody User user) {
+        String name = user.getName();
+        if (usersRepository.findByName(name) != null) {
+            return null;
+        }
         return usersRepository.save(user);
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public User login(@RequestParam String username, @RequestParam(required = false) String password) {
+        return usersRepository.findByName(username);
     }
 
     @RequestMapping(value = "/containsGroup")
